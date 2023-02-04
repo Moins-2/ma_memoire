@@ -7,6 +7,12 @@
     - [Stored XSS](#stored-xss)
     - [Payloads](#payloads)
     - [Solutions](#solutions)
+  - [XXE](#xxe)
+  - [CSRF](#csrf)
+  - [SQL Injection](#sql-injection)
+  - [Open Redirect](#open-redirect)
+  - [RCE](#rce)
+  - [References](#references)
 
 ## Cross-Site Scripting (XSS)
 
@@ -26,7 +32,7 @@ A reflected XSS attack occurs when an attacker can trick a user into visiting a 
 
 A stored XSS is when a malicious payload is stored on the vulnerable website. When a user visits the vulnerable website, the malicious payload is retrieved from the database and executed by the user's browser. It's persistent and can be triggered multiple times.
 
-![Stored XSS](./ressources/storedXSS.png)
+![Stored XSS](./ressources/StoredXSS.png)
 
 ### Payloads
 
@@ -41,3 +47,18 @@ A stored XSS is when a malicious payload is stored on the vulnerable website. Wh
 Sanitize user input
 
 - [OWASP XSS Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html)
+
+## XXE
+
+## CSRF
+
+## SQL Injection
+
+## Open Redirect
+
+## RCE
+
+## References
+
+- [OWASP](https://owasp.org/)
+- [TryHackMe - Owasp Top 10](https://tryhackme.com/room/owasptop10)
